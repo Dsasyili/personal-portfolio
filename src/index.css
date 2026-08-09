@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+html{
+  scroll-behavior:smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    180deg,
+    #1a1027 0%,
+    #2d1b4e 50%,
+    #4c1d95 100%
+  );
+  color: white;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shine {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #60a5fa 20%,
+    #22d3ee 40%,
+    #2563eb 60%,
+    #ffffff 80%
+  );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation: shine 5s linear infinite;
+}
+
+/* Floating */
+@keyframes floating {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-floating {
+  animation: floating 5s ease-in-out infinite;
+}
+
+/* Rotating Ring */
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-ring {
+  animation: rotateRing 15s linear infinite;
+}
+
+/* About Me */
+.animate-text-gradient {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #f472b6,
+    #db2777,
+    #c084fc,
+    #ffffff
+  );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation: textGradient 5s linear infinite;
+}
+
+/* PROJECTS */
+.project-slider .swiper-button-next,
+.project-slider .swiper-button-prev {
+  width: 42px;
+  height: 42px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  z-index: 20;
+}
+
+
+.project-slider .swiper-button-next::after,
+.project-slider .swiper-button-prev::after {
+  font-size: 16px;
+}
+
+
+.project-slider .swiper-button-prev {
+  left: 0;
+}
+
+
+.project-slider .swiper-button-next {
+  right: 0;
+}
