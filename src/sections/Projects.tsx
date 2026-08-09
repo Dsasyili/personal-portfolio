@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 import {
     FaChevronLeft,
@@ -442,8 +443,8 @@ export default function Projects() {
                                 <div className="mt-auto flex flex-col gap-2">
 
                                     {/* Lihat Detail */}
-                                    <a
-                                        href={`/detail-project/${project.id}`}
+                                    <Link
+                                        to={`/detail-project/${project.id}`}
                                         className="
                                             w-full
                                             text-center
@@ -458,11 +459,10 @@ export default function Projects() {
                                             transition
                                             text-xs
                                             font-medium
-                                            cursor-pointer
                                         "
                                     >
                                         View Detail
-                                    </a>
+                                    </Link>
 
                                     {/* View Project */}
                                     <a
@@ -722,8 +722,8 @@ export default function Projects() {
                                 <div className="mt-auto flex gap-2">
 
                                     {/* Lihat Detail */}
-                                    <a
-                                        href={`/detail-project/${project.id}`}
+                                    <Link
+                                        to={`/detail-project/${project.id}`}
                                         className="
                                             flex-1
                                             text-center
@@ -738,11 +738,10 @@ export default function Projects() {
                                             transition
                                             text-sm
                                             font-medium
-                                            cursor-pointer
                                         "
                                     >
                                         View Detail
-                                    </a>
+                                    </Link>
 
                                     {/* View Project */}
                                     <a

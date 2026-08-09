@@ -18,6 +18,7 @@ import Skills from "./sections/Skills";
 import Contact from "./sections/Contact";
 
 import DetailProjects from "./sections/DetailProjects";
+import ScrollToTopOnRoute from "./components/ScrollToTopOnRoute";
 
 
 // ========================================
@@ -112,18 +113,17 @@ function App() {
 
             <ScrollToHash />
 
+            <ScrollToTopOnRoute />
+
             <Routes>
 
                 {/* Main Portfolio */}
-
                 <Route
                     path="/"
                     element={<Portfolio />}
                 />
 
-
                 {/* Project Detail */}
-
                 <Route
                     path="/detail-project/:id"
                     element={
