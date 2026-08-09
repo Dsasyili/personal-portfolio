@@ -34,7 +34,7 @@ import projWebMAN from "../assets/images/Proj-Man.png";
 import dashSm from "../assets/images/Proj-WebJJUP.jpg";
 import webCoffee from "../assets/images/Proj-Coffee.png";
 import virtualPet from "../assets/images/Proj-pet.png";
-import appCarefull from "../assets/images/Proj-Carefull.png";
+import appCarefull from "../assets/images/Proj-carefull.png";
 import appBudget from "../assets/images/Proj-budgetboost.png";
 import konserTix from "../assets/images/Proj-konsertix.png";
 import postStory from "../assets/images/Proj-PostStory.jpg";
