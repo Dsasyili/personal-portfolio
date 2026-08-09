@@ -3,26 +3,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import { useState } from "react";
-
 import {
     FaArrowLeft,
     FaArrowRight,
     FaExternalLinkAlt,
 } from "react-icons/fa";
-
 import { projects } from "../data/projects";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 
 export default function DetailProjects() {
     const budgetBoostVideo =
     "https://www.youtube.com/embed/9PBaxYkbZ4s";
 
     const { id } = useParams();
-
     const [activeSlide, setActiveSlide] = useState(0);
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
@@ -39,7 +34,6 @@ export default function DetailProjects() {
         return (
             <section className="min-h-screen flex items-center justify-center px-6">
                 <div className="text-center">
-
                     <h1 className="text-3xl font-bold mb-4">
                         Project Not Found
                     </h1>
@@ -84,7 +78,6 @@ export default function DetailProjects() {
             <div className="max-w-6xl mx-auto">
 
                 {/* Back Button */}
-
                 <button
                     onClick={handleBackToProjects}
                     className="
@@ -103,13 +96,9 @@ export default function DetailProjects() {
                     Back to Projects
                 </button>
 
-
                 {/* Project Gallery */}
-
                 <div className="mb-12">
-
                     {/* Main Gallery */}
-
                     <Swiper
                         modules={[Navigation]}
                         onSwiper={(swiperInstance) => {
@@ -122,7 +111,6 @@ export default function DetailProjects() {
                         slidesPerView={1}
                         className="w-full"
                     >
-
                         {/* Budget Boost YouTube Video */}
                         {project.id === "budget-boost" && (
                             <SwiperSlide>
@@ -341,13 +329,11 @@ export default function DetailProjects() {
 
 
                     {/* Slider Controls */}
-
                     {(
                         project.id === "budget-boost"
                             ? project.gallery.length + 1
                             : project.gallery.length
                     ) > 1 && (
-
                         <div
                             className="
                                 flex
@@ -357,9 +343,7 @@ export default function DetailProjects() {
                                 mt-4
                             "
                         >
-
                             {/* Previous */}
-
                             <button
                                 onClick={() => swiper?.slidePrev()}
                                 disabled={activeSlide === 0}
@@ -386,9 +370,7 @@ export default function DetailProjects() {
                                 <FaArrowLeft className="text-xs" />
                             </button>
 
-
                             {/* Counter */}
-
                             <span
                                 className="
                                     text-sm
@@ -404,9 +386,7 @@ export default function DetailProjects() {
                                 }
                             </span>
 
-
                             {/* Next */}
-
                             <button
                                 onClick={() => swiper?.slideNext()}
                                 disabled={
@@ -439,11 +419,8 @@ export default function DetailProjects() {
                             >
                                 <FaArrowRight className="text-xs" />
                             </button>
-
                         </div>
-
                     )}
-
                 </div>
 
                 {/* Project Content */}
@@ -460,7 +437,6 @@ export default function DetailProjects() {
                             mb-6
                         "
                     >
-
                         {/* Title */}
                         <h1
                             className="
@@ -473,7 +449,6 @@ export default function DetailProjects() {
                         >
                             {project.title}
                         </h1>
-
 
                         {/* View Project Button */}
                         {project.link && (
@@ -522,7 +497,6 @@ export default function DetailProjects() {
                         {project.description}
                     </p>
 
-
                     {/* About Project */}
                     <div className="mb-10">
                         <h2
@@ -535,7 +509,6 @@ export default function DetailProjects() {
                         >
                             About Project
                         </h2>
-
                         <p
                             className="
                                 text-gray-400
@@ -547,7 +520,6 @@ export default function DetailProjects() {
                             {project.details}
                         </p>
                     </div>
-
 
                     {/* Technologies */}
                     <div className="mb-10">
@@ -589,7 +561,6 @@ export default function DetailProjects() {
                                                 border-white/10
                                             "
                                         >
-
                                             <Icon
                                                 className={`text-lg ${tech.color}`}
                                             />

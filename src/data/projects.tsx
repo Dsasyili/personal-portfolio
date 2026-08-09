@@ -1,5 +1,4 @@
 import {
-
     FaReact,
     FaHtml5,
     FaCss3Alt,
@@ -51,7 +50,7 @@ import virtualPet2 from "../assets/images/Det-Pet2.png";
 import virtualPet3 from "../assets/images/Det-Pet3.png";
 import virtualPet4 from "../assets/images/Det-Pet4.png";
 // CareFull img
-import appCarefull from "../assets/images/Proj-Carefull.png";
+import appCarefull from "../assets/images/Proj-carefull.png";
 import appCarefull2 from "../assets/images/Det-CF1.jpg";
 import appCarefull3 from "../assets/images/Det-CF2.jpg";
 import appCarefull4 from "../assets/images/Det-CF3.png";
