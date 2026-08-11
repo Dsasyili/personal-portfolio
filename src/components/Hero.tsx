@@ -19,9 +19,9 @@ export default function Hero() {
       "Hai",         // Indonesian 🇮🇩
       "Ciao",         // Italian 🇮🇹
       "Olá",          // Portuguese 🇵🇹
-      "こんにちは",    // Japanese 🇯🇵
-      "안녕하세요",     // Korean 🇰🇷
-      "你好",          // Chinese 🇨🇳
+      "Konnichiwa",   // Japanese 🇯🇵
+      "Annyeong", // Korean 🇰🇷
+      "Ni Hao",       // Chinese 🇨🇳
       "مرحبا",        // Arabic 🇸🇦
     ];
 
@@ -31,8 +31,6 @@ export default function Hero() {
 
     // Greeting animation
     const [greetingIndex, setGreetingIndex] = useState(0);
-    const [showGreeting, setShowGreeting] = useState(true);
-
 
     // =========================
     // Typing Role Animation

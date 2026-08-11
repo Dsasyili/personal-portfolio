@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import { useRef, useState, useEffect } from "react";
 import {
