@@ -20,15 +20,15 @@ export default function Resume() {
   const tabs = [
     {
       id: "education",
-      label: "Education🎓",
+      label: "Education 🎓",
     },
     {
       id: "experience",
-      label: "Experience🎯",
+      label: "Experience 🎯",
     },
     {
       id: "certificate",
-      label: "Certificate📰",
+      label: "Certificate 📰",
     },
   ];
 
@@ -107,19 +107,25 @@ export default function Resume() {
         </div>
 
         {/* Tabs */}
-        <div className="
-            flex 
-            justify-center 
-            gap-3 
-            flex-wrap
-            mb-10
-            ">
-
+        <div
+            className="
+                flex
+                justify-center
+                gap-2
+                sm:gap-3
+                flex-nowrap
+                overflow-x-auto
+                mb-10
+                px-2
+                scrollbar-hide
+            "
+        >
             {tabs.map((tab) => (
                 <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`
+                        shrink-0
                         px-3
                         sm:px-6
                         py-2.5
@@ -131,17 +137,16 @@ export default function Resume() {
                         transition-all
                         duration-300
                         cursor-pointer
+                        whitespace-nowrap
 
                         ${
-                        activeTab === tab.id
-                        ? 
-                        "bg-purple-500 text-white shadow-lg"
-                        :
-                        "bg-slate-900 text-gray-400 hover:text-white border border-slate-800"
+                            activeTab === tab.id
+                                ? "bg-purple-500 text-white shadow-lg"
+                                : "bg-slate-900 text-gray-400 hover:text-white border border-slate-800"
                         }
                     `}
-                    >
-                {tab.label}
+                >
+                    {tab.label}
                 </button>
             ))}
         </div>

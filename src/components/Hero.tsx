@@ -5,134 +5,200 @@ import {
 } from "react-icons/fa";
 import profile from "../assets/images/hero_img1.png";
 
-
 export default function Hero() {
-  const roles = [
-    "Web Developer",
-    "Frontend Developer",
-    "UI/UX Designer",
-  ];
+    const roles = [
+        "Web Developer",
+        "Frontend Developer",
+        "UI/UX Designer",
+    ];
 
-  const [text, setText] = useState("");
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+    const greetings = [
+      "Hello",        // English 🇬🇧
+      "Hola",         // Spanish 🇪🇸
+      "Bonjour",      // French 🇫🇷
+      "Hai",         // Indonesian 🇮🇩
+      "Ciao",         // Italian 🇮🇹
+      "Olá",          // Portuguese 🇵🇹
+      "こんにちは",    // Japanese 🇯🇵
+      "안녕하세요",     // Korean 🇰🇷
+      "你好",          // Chinese 🇨🇳
+      "مرحبا",        // Arabic 🇸🇦
+    ];
 
-  useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const [text, setText] = useState("");
+    const [roleIndex, setRoleIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
 
-    const typingSpeed = isDeleting ? 60 : 50;
-    const pauseTime = 1000;
+    // Greeting animation
+    const [greetingIndex, setGreetingIndex] = useState(0);
+    const [showGreeting, setShowGreeting] = useState(true);
 
-    let timeout: ReturnType<typeof setTimeout>;
 
-    if (!isDeleting && text === currentRole) {
-      timeout = setTimeout(() => setIsDeleting(true), pauseTime);
-    } else if (isDeleting && text === "") {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    } else {
-      timeout = setTimeout(() => {
-        setText((prev) =>
-          isDeleting
-            ? currentRole.substring(0, prev.length - 1)
-            : currentRole.substring(0, prev.length + 1)
-        );
-      }, typingSpeed);
-    }
+    // =========================
+    // Typing Role Animation
+    // =========================
+    useEffect(() => {
+        const currentRole = roles[roleIndex];
 
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, roleIndex]);
+        const typingSpeed = isDeleting ? 60 : 50;
+        const pauseTime = 1000;
 
-  return (
-    <section className="min-h-[85vh] flex items-center py-12"> <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        let timeout: ReturnType<typeof setTimeout>;
 
-        {/* Text */}
-        <div className="order-2 md:order-1 text-center md:text-left">
-          <p className="text-purple-400 font-bold text-lg mb-3">
-            Hello I'm
-          </p>
+        if (!isDeleting && text === currentRole) {
+            timeout = setTimeout(() => setIsDeleting(true), pauseTime);
+        } else if (isDeleting && text === "") {
+            setIsDeleting(false);
+            setRoleIndex((prev) => (prev + 1) % roles.length);
+        } else {
+            timeout = setTimeout(() => {
+                setText((prev) =>
+                    isDeleting
+                        ? currentRole.substring(0, prev.length - 1)
+                        : currentRole.substring(0, prev.length + 1)
+                );
+            }, typingSpeed);
+        }
 
-          <h1 className="text-3xl md:text-6xl font-bold leading-tight animate-shine">
-            Desquita Sasyili
-            </h1>
+        return () => clearTimeout(timeout);
+    }, [text, isDeleting, roleIndex]);
 
-            <h2 className="text-xl md:text-2xl text-gray-300 mt-4 h-10 flex items-center justify-center md:justify-start">
-                <span>{text}</span>
-                <span className="ml-1 text-pink-500 animate-pulse">
-                |
-                </span>
-            </h2>
 
-            
-            <p className="mt-8 text-[14px] md:text-base leading-6 md:leading-8 max-w-xl mx-auto md:mx-0 text-gray-400">
-                As a Web Developer, Frontend Developer, and UI/UX Designer,
-                I transform ideas into modern digital products by combining
-                clean code, responsive interfaces, and user-centered design
-                to create engaging and impactful web experiences.
-            </p>
+    // =========================
+    // Greeting Animation
+    // =========================
+    useEffect(() => {
+      const interval = setInterval(() => {
+          setGreetingIndex(
+              (prev) => (prev + 1) % greetings.length
+          );
+      },500);
 
-            <div className="flex justify-center md:justify-start gap-3 mt-8 flex-wrap">
-                {/* Let's Know Me */}
-                <a
-                    href="#about"
-                    className="flex items-center gap-2 bg-purple-500 text-white px-7 py-3 rounded-full font-semibold hover:bg-pink-500 hover:scale-105 transition-all duration-300 animate-bounce"
-                >
-                    <span>Let's Know Me 👀</span>
-                </a>
+      return () => clearInterval(interval);
+    }, []);
 
-                {/* GitHub */}
-                <a
-                    href="https://github.com/Dsasyili"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub"
-                    className="
-                        w-12
-                        h-12
-                        rounded-full
-                        border
-                        border-gray-600
-                        flex
-                        items-center
-                        justify-center
-                        text-white
-                        hover:bg-blue-500
-                        hover:border-blue-500
-                        hover:text-white
-                        transition-all
-                        duration-300
-                    "
-                >
-                    <FaGithub size={20} />
-                </a>
 
-                {/* LinkedIn */}
-                <a
-                    href="https://www.linkedin.com/in/desquita-sasyili/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    className="
-                        w-12
-                        h-12
-                        rounded-full
-                        border
-                        border-gray-600
-                        flex
-                        items-center
-                        justify-center
-                        text-white
-                        hover:bg-blue-400
-                        hover:border-blue-400
-                        hover:text-white-900
-                        transition-all
-                        duration-300
-                    "
-                >
-                    <FaLinkedin size={20} />
-                </a>
-            </div>
-        </div>
+    return (
+        <section className="min-h-[85vh] flex items-center py-12">
+            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+                {/* Text */}
+                <div className="order-2 md:order-1 text-center md:text-left">
+
+                    {/* Greeting */}
+                    <div className="h-8 mb-3">
+                        <p className="text-purple-400 font-bold text-lg">
+                            {greetings[greetingIndex]}, I'm
+                        </p>
+                    </div>
+
+                    {/* Name */}
+                    <h1 className="text-3xl md:text-5xl font-bold leading-tight animate-shine">
+                        Desquita Sasyili
+                    </h1>
+
+
+                    {/* Typing Role */}
+                    <h2 className="text-xl md:text-2xl text-gray-300 mt-4 h-10 flex items-center justify-center md:justify-start">
+                        <span>{text}</span>
+
+                        <span className="ml-1 text-pink-500 animate-pulse">
+                            |
+                        </span>
+                    </h2>
+
+
+                    {/* Description */}
+                    <p className="mt-8 text-[14px] md:text-base leading-6 md:leading-8 max-w-xl mx-auto md:mx-0 text-gray-400">
+                        As a Web Developer, Frontend Developer, and UI/UX Designer,
+                        I transform ideas into modern digital products by combining
+                        clean code, responsive interfaces, and user-centered design
+                        to create engaging and impactful web experiences.
+                    </p>
+
+
+                    {/* Buttons */}
+                    <div className="flex justify-center md:justify-start gap-3 mt-8 flex-wrap">
+
+                        {/* Let's Know Me */}
+                        <a
+                            href="#about"
+                            className="
+                                flex
+                                items-center
+                                gap-2
+                                bg-purple-500
+                                text-white
+                                px-7
+                                py-3
+                                rounded-full
+                                font-semibold
+                                hover:bg-pink-500
+                                hover:scale-105
+                                transition-all
+                                duration-300
+                                animate-bounce
+                            "
+                        >
+                            <span>Let's Know Me 👀</span>
+                        </a>
+
+
+                        {/* GitHub */}
+                        <a
+                            href="https://github.com/Dsasyili"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub"
+                            className="
+                                w-12
+                                h-12
+                                rounded-full
+                                border
+                                border-gray-600
+                                flex
+                                items-center
+                                justify-center
+                                text-white
+                                hover:bg-blue-500
+                                hover:border-blue-500
+                                hover:text-white
+                                transition-all
+                                duration-300
+                            "
+                        >
+                            <FaGithub size={20} />
+                        </a>
+
+
+                        {/* LinkedIn */}
+                        <a
+                            href="https://www.linkedin.com/in/desquita-sasyili/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn"
+                            className="
+                                w-12
+                                h-12
+                                rounded-full
+                                border
+                                border-gray-600
+                                flex
+                                items-center
+                                justify-center
+                                text-white
+                                hover:bg-blue-400
+                                hover:border-blue-400
+                                hover:text-white
+                                transition-all
+                                duration-300
+                            "
+                        >
+                            <FaLinkedin size={20} />
+                        </a>
+
+                    </div>
+                </div>
 
         {/* Photo */}
             <div className="order-1 md:order-2 flex justify-center mt-2">

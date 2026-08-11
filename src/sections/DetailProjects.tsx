@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
     FaArrowLeft,
     FaArrowRight,
@@ -18,8 +18,9 @@ export default function DetailProjects() {
     "https://www.youtube.com/embed/9PBaxYkbZ4s";
 
     const { id } = useParams();
-    const [activeSlide, setActiveSlide] = useState(0);
-    const [swiper, setSwiper] = useState<SwiperType | null>(null);
+    const [swiper, setSwiper] = useState<any>(null); 
+    const [activeSlide, setActiveSlide] = useState(0); 
+    const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
     const project = projects.find(
         (item) => item.id === id
@@ -28,6 +29,19 @@ export default function DetailProjects() {
     const handleBackToProjects = () => {
         window.location.href = "/#projects";
     };
+
+    // ========================= // Auto Scroll Thumbnail // ========================= 
+    useEffect(() => { 
+        const activeThumbnail = thumbnailRefs.current[activeSlide]; 
+        
+        if (activeThumbnail) { 
+            activeThumbnail.scrollIntoView({ 
+                behavior: "smooth", 
+                block: "nearest", 
+                inline: "center", 
+            }); 
+        } 
+    }, [activeSlide]);
 
     // Jika project tidak ditemukan
     if (!project) {
@@ -96,332 +110,8 @@ export default function DetailProjects() {
                     Back to Projects
                 </button>
 
-                {/* Project Gallery */}
-                <div className="mb-12">
-                    {/* Main Gallery */}
-                    <Swiper
-                        modules={[Navigation]}
-                        onSwiper={(swiperInstance) => {
-                            setSwiper(swiperInstance);
-                        }}
-                        onSlideChange={(swiperInstance) => {
-                            setActiveSlide(swiperInstance.activeIndex);
-                        }}
-                        spaceBetween={20}
-                        slidesPerView={1}
-                        className="w-full"
-                    >
-                        {/* Budget Boost YouTube Video */}
-                        {project.id === "budget-boost" && (
-                            <SwiperSlide>
-                                <div
-                                    className="
-                                        w-full
-                                        max-h-[500px]
-                                        flex
-                                        justify-center
-                                        overflow-hidden
-                                        rounded-3xl
-                                        bg-black
-                                    "
-                                >
-                                    <div
-                                        className="
-                                            w-full
-                                            aspect-video
-                                            max-h-[500px]
-                                        "
-                                    >
-                                        <iframe
-                                            src={budgetBoostVideo}
-                                            title="Budget Boost Pitching Video"
-                                            className="
-                                                w-full
-                                                h-full
-                                                rounded-3xl
-                                            "
-                                            allow="
-                                                accelerometer;
-                                                autoplay;
-                                                clipboard-write;
-                                                encrypted-media;
-                                                gyroscope;
-                                                picture-in-picture;
-                                                web-share
-                                            "
-                                            allowFullScreen
-                                        />
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        )}
-
-                        {/* Existing Images */}
-                        {project.gallery.map((image, index) => (
-                            <SwiperSlide key={index}>
-                                <div
-                                    className="
-                                        w-full
-                                        flex
-                                        justify-center
-                                        cursor-pointer
-                                    "
-                                >
-                                    <img
-                                        src={image}
-                                        alt={`${project.title} - ${index + 1}`}
-                                        className="
-                                            w-full
-                                            h-auto
-                                            max-h-[500px]
-                                            object-contain
-                                            rounded-3xl
-                                            block
-                                        "
-                                    />
-
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-
-                    {/* Thumbnail Preview */}
-                    {project.gallery.length > 0 && (
-                        <div
-                            className="
-                                flex
-                                justify-center
-                                gap-3
-                                mt-5
-                                overflow-x-auto
-                                pb-2
-                                px-2
-                            "
-                        >
-                            {/* Video Thumbnail */}
-                            {project.id === "budget-boost" && (
-                                <button
-                                    onClick={() => {
-                                        swiper?.slideTo(0);
-                                        setActiveSlide(0);
-                                    }}
-                                    className={`
-                                        flex-shrink-0
-                                        w-20
-                                        h-14
-                                        sm:w-24
-                                        sm:h-16
-                                        rounded-xl
-                                        overflow-hidden
-                                        border-2
-                                        transition-all
-                                        duration-300
-                                        cursor-pointer
-
-                                        ${
-                                            activeSlide === 0
-                                                ? "border-pink-500 opacity-100"
-                                                : "border-white/10 opacity-60 hover:opacity-100"
-                                        }
-                                    `}
-                                    aria-label="View Budget Boost video"
-                                >
-                                    <div className="relative w-full h-full bg-black">
-
-                                        <img
-                                            src="https://img.youtube.com/vi/9PBaxYkbZ4s/mqdefault.jpg"
-                                            alt="Budget Boost video thumbnail"
-                                            className="
-                                                w-full
-                                                h-full
-                                                object-cover
-                                            "
-                                        />
-
-                                        <div
-                                            className="
-                                                absolute
-                                                inset-0
-                                                flex
-                                                items-center
-                                                justify-center
-                                                bg-black/20
-                                            "
-                                        >
-
-                                            <div
-                                                className="
-                                                    w-7
-                                                    h-7
-                                                    rounded-full
-                                                    bg-red-600
-                                                    flex
-                                                    items-center
-                                                    justify-center
-                                                    text-white
-                                                    text-xs
-                                                "
-                                            >
-                                                ▶
-                                            </div>
-                                        </div>
-                                    </div>
-                                </button>
-                            )}
-
-                            {/* Image Thumbnails */}
-                            {project.gallery.map((image, index) => {
-
-                                const slideIndex =
-                                    project.id === "budget-boost"
-                                        ? index + 1
-                                        : index;
-
-                                return (
-
-                                    <button
-                                        key={index}
-                                        onClick={() => {
-                                            swiper?.slideTo(slideIndex);
-                                            setActiveSlide(slideIndex);
-                                        }}
-                                        className={`
-                                            flex-shrink-0
-                                            w-20
-                                            h-14
-                                            sm:w-24
-                                            sm:h-16
-                                            rounded-xl
-                                            overflow-hidden
-                                            border-2
-                                            transition-all
-                                            duration-300
-                                            cursor-pointer
-
-                                            ${
-                                                activeSlide === slideIndex
-                                                    ? "border-pink-500 opacity-100"
-                                                    : "border-white/10 opacity-60 hover:opacity-100"
-                                            }
-                                        `}
-                                        aria-label={`View image ${index + 1}`}
-                                    >
-
-                                        <img
-                                            src={image}
-                                            alt={`${project.title} thumbnail ${index + 1}`}
-                                            className="
-                                                w-full
-                                                h-full
-                                                object-cover
-                                            "
-                                        />
-
-                                    </button>
-
-                                );
-
-                            })}
-
-                        </div>
-
-                    )}
-
-
-                    {/* Slider Controls */}
-                    {(
-                        project.id === "budget-boost"
-                            ? project.gallery.length + 1
-                            : project.gallery.length
-                    ) > 1 && (
-                        <div
-                            className="
-                                flex
-                                items-center
-                                justify-center
-                                gap-5
-                                mt-4
-                            "
-                        >
-                            {/* Previous */}
-                            <button
-                                onClick={() => swiper?.slidePrev()}
-                                disabled={activeSlide === 0}
-                                className="
-                                    w-9
-                                    h-9
-                                    rounded-full
-                                    flex
-                                    items-center
-                                    justify-center
-                                    text-gray-300
-                                    bg-white/5
-                                    border
-                                    border-white/10
-                                    hover:bg-purple-500
-                                    hover:text-white
-                                    transition
-                                    disabled:opacity-30
-                                    disabled:cursor-not-allowed
-                                    cursor-pointer
-                                "
-                                aria-label="Previous slide"
-                            >
-                                <FaArrowLeft className="text-xs" />
-                            </button>
-
-                            {/* Counter */}
-                            <span
-                                className="
-                                    text-sm
-                                    text-gray-400
-                                    min-w-[45px]
-                                    text-center
-                                "
-                            >
-                                {activeSlide + 1} / {
-                                    project.id === "budget-boost"
-                                        ? project.gallery.length + 1
-                                        : project.gallery.length
-                                }
-                            </span>
-
-                            {/* Next */}
-                            <button
-                                onClick={() => swiper?.slideNext()}
-                                disabled={
-                                    activeSlide ===
-                                    (
-                                        project.id === "budget-boost"
-                                            ? project.gallery.length
-                                            : project.gallery.length - 1
-                                    )
-                                }
-                                className="
-                                    w-9
-                                    h-9
-                                    rounded-full
-                                    flex
-                                    items-center
-                                    justify-center
-                                    text-gray-300
-                                    bg-white/5
-                                    border
-                                    border-white/10
-                                    hover:bg-purple-500
-                                    hover:text-white
-                                    transition
-                                    disabled:opacity-30
-                                    disabled:cursor-not-allowed
-                                    cursor-pointer
-                                "
-                                aria-label="Next slide"
-                            >
-                                <FaArrowRight className="text-xs" />
-                            </button>
-                        </div>
-                    )}
-                </div>
+                {/* Project Gallery */} 
+                <div className="mb-12"> {/* ========================= Main Gallery ========================= */} <Swiper modules={[Navigation]} onSwiper={(swiperInstance) => { setSwiper(swiperInstance); }} onSlideChange={(swiperInstance) => { setActiveSlide(swiperInstance.activeIndex); }} spaceBetween={20} slidesPerView={1} className="w-full" > {/* ========================= Budget Boost YouTube Video ========================= */} {project.id === "budget-boost" && ( <SwiperSlide> <div className=" w-full max-h-[500px] flex justify-center overflow-hidden rounded-3xl bg-black " > <div className=" w-full aspect-video max-h-[500px] " > <iframe src={budgetBoostVideo} title="Budget Boost Pitching Video" className=" w-full h-full rounded-3xl " allow=" accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share " allowFullScreen /> </div> </div> </SwiperSlide> )} {/* ========================= Existing Images ========================= */} {project.gallery.map((image, index) => ( <SwiperSlide key={index}> <div className=" w-full flex justify-center cursor-pointer " > <img src={image} alt={`${project.title} - ${index + 1}`} className=" w-full h-auto max-h-[500px] object-contain rounded-3xl block " /> </div> </SwiperSlide> ))} </Swiper> {/* ========================= Thumbnail Preview ========================= */} {project.gallery.length > 0 && ( <div className=" flex justify-start sm:justify-center gap-3 mt-5 overflow-x-auto overflow-y-hidden pb-2 px-2 scroll-smooth scrollbar-hide " > {/* ========================= Video Thumbnail ========================= */} {project.id === "budget-boost" && ( <button ref={(el) => { thumbnailRefs.current[0] = el; }} onClick={() => { swiper?.slideTo(0); setActiveSlide(0); }} className={` flex-shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer ${ activeSlide === 0 ? "border-pink-500 opacity-100 scale-105" : "border-white/10 opacity-60 hover:opacity-100" } `} aria-label="View Budget Boost video" > <div className="relative w-full h-full bg-black"> <img src="https://img.youtube.com/vi/9PBaxYkbZ4s/mqdefault.jpg" alt="Budget Boost video thumbnail" className=" w-full h-full object-cover " /> <div className=" absolute inset-0 flex items-center justify-center bg-black/20 " > <div className=" w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-white text-xs " > ▶ </div> </div> </div> </button> )} {/* ========================= Image Thumbnails ========================= */} {project.gallery.map((image, index) => { const slideIndex = project.id === "budget-boost" ? index + 1 : index; return ( <button key={index} ref={(el) => { thumbnailRefs.current[slideIndex] = el; }} onClick={() => { swiper?.slideTo(slideIndex); setActiveSlide(slideIndex); }} className={` flex-shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 cursor-pointer ${ activeSlide === slideIndex ? "border-pink-500 opacity-100 scale-105" : "border-white/10 opacity-60 hover:opacity-100" } `} aria-label={`View image ${index + 1}`} > <img src={image} alt={`${project.title} thumbnail ${index + 1}`} className=" w-full h-full object-cover " /> </button> ); })} </div> )} {/* ========================= Slider Controls ========================= */} {( project.id === "budget-boost" ? project.gallery.length + 1 : project.gallery.length ) > 1 && ( <div className=" flex items-center justify-center gap-5 mt-4 " > {/* Previous */} <button onClick={() => swiper?.slidePrev()} disabled={activeSlide === 0} className=" w-9 h-9 rounded-full flex items-center justify-center text-gray-300 bg-white/5 border border-white/10 hover:bg-purple-500 hover:text-white transition disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer " aria-label="Previous slide" > <FaArrowLeft className="text-xs" /> </button> {/* Counter */} <span className=" text-sm text-gray-400 min-w-[45px] text-center " > {activeSlide + 1} / { project.id === "budget-boost" ? project.gallery.length + 1 : project.gallery.length } </span> {/* Next */} <button onClick={() => swiper?.slideNext()} disabled={ activeSlide === ( project.id === "budget-boost" ? project.gallery.length : project.gallery.length - 1 ) } className=" w-9 h-9 rounded-full flex items-center justify-center text-gray-300 bg-white/5 border border-white/10 hover:bg-purple-500 hover:text-white transition disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer " aria-label="Next slide" > <FaArrowRight className="text-xs" /> </button> </div> )} </div>
 
                 {/* Project Content */}
                 <div className="max-w-4xl mx-auto">

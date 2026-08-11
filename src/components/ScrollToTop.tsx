@@ -45,7 +45,7 @@ export default function ScrollToTop() {
                 sm:h-11
 
                 rounded-full
-                bg-pink-600
+                bg-pink-500
                 hover:bg-blue-500
                 border
                 border-white/10

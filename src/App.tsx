@@ -9,7 +9,6 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-
 import Home from "./sections/Home";
 import About from "./sections/About";
 import Resume from "./sections/Resume";

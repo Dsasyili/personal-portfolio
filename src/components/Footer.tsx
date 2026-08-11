@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
     FaGithub,
     FaLinkedin,
@@ -83,40 +84,40 @@ export default function Footer() {
 
                     {/* Navigation */}
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-                        <a
-                            href="#home"
+                        <Link
+                            to="/#home"
                             className="text-pink-400 hover:text-white transition"
                         >
                             Home
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#about"
+                        <Link
+                            to="/#about"
                             className="text-pink-400 hover:text-white transition"
                         >
                             About
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#skills"
+                        <Link
+                            to="/#skills"
                             className="text-pink-400 hover:text-white transition"
                         >
                             Skills
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#projects"
+                        <Link
+                            to="/#projects"
                             className="text-pink-400 hover:text-white transition"
                         >
                             Projects
-                        </a>
+                        </Link>
 
-                        <a
-                            href="#contact"
+                        <Link
+                            to="/#contact"
                             className="text-pink-400 hover:text-white transition"
                         >
                             Contact
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Social */}

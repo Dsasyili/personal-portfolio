@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center">
         {/* Logo */}
         <h1 className="text-2xl font-bold text-purple-400">
-          Portofolio.
+          Portfolio.
         </h1>
 
         {/* Desktop Menu */}
