@@ -1,4 +1,4 @@
-# 💜 Personal Portfolio Website
+## 💜 Personal Portfolio Website
 
 A modern and responsive personal portfolio website built to showcase my background, skills, projects, certifications, and experience as a **Frontend Developer & UI/UX Designer**.
 
