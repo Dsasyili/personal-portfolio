@@ -44,28 +44,6 @@ The website features a clean and modern interface with smooth animations, respon
 
 ---
 
-## 📂 Project Structure
+## 🌐 Live Demo
 
-src/
-├── assets/
-│   └── images/
-│
-├── components/
-│   ├── About.tsx
-│   ├── Contact.tsx
-│   ├── Hero.tsx
-│   ├── Navbar.tsx
-│   ├── Projects.tsx
-│   ├── Resume.tsx
-│   └── Skills.tsx
-│
-├── data/
-│   └── projects.ts
-│
-├── pages/
-│   └── ProjectDetail.tsx
-│
-├── App.tsx
-├── main.tsx
-├── index.css
-└── App.css
+🔗 Portfolio: https://sachylee-space.vercel.app
