@@ -1,4 +1,4 @@
-## 💜 Personal Portfolio Website
+## Personal Portfolio Website
 
 A modern and responsive personal portfolio website built to showcase my background, skills, projects, certifications, and experience as a **Frontend Developer & UI/UX Designer**.
 
@@ -47,3 +47,8 @@ The website features a clean and modern interface with smooth animations, respon
 ## 🌐 Live Demo
 
 🔗 Portfolio: https://sachylee-space.vercel.app
+
+---
+## 👩‍💻 Author
+
+Desquita Sasyili  |  © 2026 Sachylee. All Rights Reserved.
